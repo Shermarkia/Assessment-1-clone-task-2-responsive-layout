@@ -1,0 +1,112 @@
+:root {
+  --small: 16px;
+  --large: 16px;
+  --ink: #070410;
+  --purple: #231651;
+  --mint: #4dccbd;
+  --yellow: #eef36a;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--white);
+  font-family: Lato, sans-serif;
+}
+
+h1, h2, p { margin: 0; }
+h1, h2, button { font-family: Teko, sans-serif; }
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--small);
+  padding: var(--small);
+  background: var(--purple);
+}
+
+.site-header h1 { font-size: 2em; line-height: 1; }
+.site-header nav { display: none; }
+.site-header ul {
+  display: flex;
+  gap: var(--large);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+button {
+  padding: var(--small);
+  border: 0;
+  border-radius: var(--small);
+  background: var(--yellow);
+  color: var(--ink);
+  font-size: 2em;
+  line-height: .9;
+  text-transform: uppercase;
+}
+
+.movie-grid {
+  display: grid;
+  gap: var(--large);
+  width: calc(100% - var(--large) - var(--large));
+  max-width: 900px;
+  margin: var(--large) auto;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--purple);
+  box-shadow: 4px 4px var(--mint);
+  font-size: 1.5em;
+  min-width: 0;
+}
+
+.movie-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.movie-details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--small);
+  padding: var(--small);
+  min-width: 0;
+}
+
+.movie-details h2 { font-size: 1em; line-height: 1; margin-bottom: 8px; }
+.movie-details p { line-height: 1.25; }
+
+@media (min-width: 720px) {
+  :root { --large: 32px; }
+  .site-header h1 { font-size: 3em; }
+  .site-header nav { display: block; }
+  .movie-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  :root { --large: 48px; }
+
+  /* The first card spans both columns with a wide poster above its details. */
+  .movie-card:first-child { grid-column: 1 / -1; }
+  .movie-card:first-child img { aspect-ratio: 3 / 1; }
+  .movie-card:first-child .movie-details { flex-direction: row; }
+  .movie-card:first-child button { flex: 0 0 32%; }
+
+  /* The final three cards span both columns and place the poster on the left. */
+  .movie-card:nth-child(n + 4) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

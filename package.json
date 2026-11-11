@@ -1,0 +1,8 @@
+{
+  "name": "watch-it",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "vite", "build": "vite build" },
+  "dependencies": { "react": "19.1.0", "react-dom": "19.1.0" },
+  "devDependencies": { "vite": "6.3.6" }
+}
